@@ -14,7 +14,7 @@ public class DemoController {
     //if it's having 1 injection this is optional for the constructor, but it is a good practice to use it
     //but i will keep it for now to be explicit about the dependency injection if it is one injection only
     @Autowired
-    DemoController(Coach theCoach) {
+    public DemoController(Coach theCoach) {
         myCoach = theCoach;
     }
 
