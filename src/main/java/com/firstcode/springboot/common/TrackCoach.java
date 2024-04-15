@@ -1,7 +1,9 @@
 package com.firstcode.springboot.common;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+@Primary
 @Component
 public class TrackCoach implements Coach{
     @Override
