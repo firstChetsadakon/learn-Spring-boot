@@ -11,8 +11,9 @@ public class DemoController {
     private Coach myCoach;
 
     //define a constructor for dependency injection
-    @Autowired //if it's having 1 injection this is optional for the constructor, but it is a good practice to use it
+    //if it's having 1 injection this is optional for the constructor, but it is a good practice to use it
     // but i will keep it for now to be explicit about the dependency injection if it is one injection only
+    @Autowired
     DemoController(Coach theCoach) {
         myCoach = theCoach;
     }
