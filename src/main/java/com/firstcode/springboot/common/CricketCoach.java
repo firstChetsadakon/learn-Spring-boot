@@ -1,4 +1,4 @@
-package com.firstcode.util;
+package com.firstcode.springboot.common;
 
 import org.springframework.stereotype.Component;
 

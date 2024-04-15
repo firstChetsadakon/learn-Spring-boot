@@ -1,4 +1,4 @@
-package com.firstcode.util;
+package com.firstcode.springboot.common;
 
 public interface Coach {
 
