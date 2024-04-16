@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SportConfig {
-    @Bean("aquatic")
+    @Bean("aquatic") // bean id is aquatic in this annotation @Bean("aquatic")
     public Coach swimCoach() { // swimCoach() is  the bean id
         return new SwimCoach();
     }
