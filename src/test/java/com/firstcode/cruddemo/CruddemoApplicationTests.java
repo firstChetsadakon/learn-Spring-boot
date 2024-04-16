@@ -1,10 +1,10 @@
-package com.firstcode.springboot;
+package com.firstcode.cruddemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoinjectionApplicationTests {
+class CruddemoApplicationTests {
 
 	@Test
 	void contextLoads() {

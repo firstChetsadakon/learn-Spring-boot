@@ -1,12 +1,13 @@
-package com.firstcode.springboot;
+package com.firstcode.cruddemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoinjectionApplication {
+public class CruddemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoinjectionApplication.class, args);
+		SpringApplication.run(CruddemoApplication.class, args);
 	}
+
 }
