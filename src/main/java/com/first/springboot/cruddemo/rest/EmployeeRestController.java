@@ -2,9 +2,13 @@ package com.first.springboot.cruddemo.rest;
 
 import com.first.springboot.cruddemo.entity.Employee;
 import com.first.springboot.cruddemo.service.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+
+@Slf4j
 
 @RestController
 @RequestMapping("/api")
@@ -22,13 +26,12 @@ public class EmployeeRestController {
     }
 
     // add mapping for get /employee/{employeeId}
-    @GetMapping("/employees/{employeeId}")
-    public Employee getEmployee(@PathVariable int employeeId) {
-
-        Employee theEmployee = employeeService.findById(employeeId);
+    @GetMapping("/employees/{empId}")
+    public Employee getEmployee(@PathVariable int empId) {
+        Employee theEmployee = employeeService.findById(empId);
 
         if(theEmployee == null){
-            throw new RuntimeException("Employee id not found - " + employeeId);
+            throw new RuntimeException("Employee id not found - " + empId);
         }
         return theEmployee;
     }

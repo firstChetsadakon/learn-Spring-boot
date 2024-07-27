@@ -3,6 +3,8 @@ package com.first.springboot.cruddemo.service;
 import com.first.springboot.cruddemo.dao.EmployeeRepository;
 import com.first.springboot.cruddemo.entity.Employee;
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
 
 
+    private static final Logger log = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final EmployeeRepository employeeRepository;
 
     public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
@@ -28,6 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findById(int theId) {
+
         Optional<Employee> result = employeeRepository.findById(theId);
         Employee theEmployee = null;
         if (result.isPresent()){
