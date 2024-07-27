@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     // delegate the call to DAO
 
     @Override
-    public Employee findByID(int theId) {
+    public Employee findById(int theId) {
         Optional<Employee> result = employeeRepository.findById(theId);
         Employee theEmployee = null;
         if (result.isPresent()){

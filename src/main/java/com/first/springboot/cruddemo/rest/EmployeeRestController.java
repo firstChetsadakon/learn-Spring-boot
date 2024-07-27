@@ -25,7 +25,7 @@ public class EmployeeRestController {
     @GetMapping("/employees/{employeeId}")
     public Employee getEmployee(@PathVariable int employeeId) {
 
-        Employee theEmployee = employeeService.findByID(employeeId);
+        Employee theEmployee = employeeService.findById(employeeId);
 
         if(theEmployee == null){
             throw new RuntimeException("Employee id not found - " + employeeId);
@@ -59,7 +59,7 @@ public class EmployeeRestController {
     // add mapping for DELETE / employees -  delete employee
     @DeleteMapping("/employees/{employeeId}")
     public String deleteEmployee(@PathVariable int employeeId){
-        Employee tempEmployee = employeeService.findByID(employeeId);
+        Employee tempEmployee = employeeService.findById(employeeId);
 
         // throw exception if null
         if(tempEmployee == null) {
