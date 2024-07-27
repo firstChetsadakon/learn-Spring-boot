@@ -1,6 +1,5 @@
 package com.first.springboot.cruddemo.rest;
 
-import com.first.springboot.cruddemo.dao.EmployeeDAO;
 import com.first.springboot.cruddemo.entity.Employee;
 import com.first.springboot.cruddemo.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
