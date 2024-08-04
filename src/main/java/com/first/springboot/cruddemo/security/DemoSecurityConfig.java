@@ -1,13 +1,16 @@
 package com.first.springboot.cruddemo.security;
 
+import com.first.springboot.cruddemo.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -19,24 +22,40 @@ import javax.sql.DataSource;
 public class DemoSecurityConfig {
     // add support for jdbc ... no more hardcode users
 
+//    @Bean
+//    public UserDetailsManager userDetailsManager(DataSource dataSource){
+//        // UserDetailsManager that use JDBC receive dataSource
+////        spring.datasource.url=jdbc:mysql://localhost:3306/employee_directory
+////        spring.datasource.username=springstudent
+////        spring.datasource.password=springstudent
+//        // spring inject this datasource by config
+//        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+//
+//        // define query to retrieve a user by username
+//        jdbcUserDetailsManager.setUsersByUsernameQuery(
+//                "select user_id, pw, active from members where user_id=?");
+//
+//        // define query to retrieve tje authorities/roles by username
+//        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
+//                "select user_id, role from roles where user_id=?");
+//
+//        return jdbcUserDetailsManager;
+//    }
+
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource){
-        // UserDetailsManager that use JDBC receive dataSource
-//        spring.datasource.url=jdbc:mysql://localhost:3306/employee_directory
-//        spring.datasource.username=springstudent
-//        spring.datasource.password=springstudent
-        // spring inject this datasource by config
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+    public BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
 
-        // define query to retrieve a user by username
-        jdbcUserDetailsManager.setUsersByUsernameQuery(
-                "select user_id, pw, active from members where user_id=?");
-
-        // define query to retrieve tje authorities/roles by username
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery(
-                "select user_id, role from roles where user_id=?");
-
-        return jdbcUserDetailsManager;
+    // authenticationProvider bean definition
+    // assigning the custom user details and password encoder to the
+    // DaoAuthenticationProvider.
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(UserService userService){
+        DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
+        auth.setUserDetailsService(userService); // set the custom user detail service
+        auth.setPasswordEncoder(passwordEncoder());  // et the password encoder - bcrypt
+        return auth;
     }
 
 //    @Bean
